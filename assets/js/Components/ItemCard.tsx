@@ -1,7 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Button, Container } from 'reactstrap';
+import axios from 'axios';
 
-const ItemCard = () => (
-  <div>Inside item card</div>
-);
+class ItemCard extends Component {
+
+  componentDidMount() {
+    axios.get('/data').then((res) => {
+      console.log(res.data);
+    });
+  }
+
+  render() {
+    return (
+      <Container className="mt-5">
+
+        <Button>A button</Button>
+      </Container>
+    );
+  }
+}
 
 export default ItemCard;

@@ -2,19 +2,13 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome to React Symfony 4 Starter!{% endblock %}</title>
+        <title>{% block title %}Symfony app{% endblock %}</title>
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('build/app.css') }}">
         {% endblock %}
     </head>
     <body>
-        <header>
-            <h1>React Symfony 4 Starter</h1>
-        </header>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-        <footer class="footer">
-            <p>Check out the full post on <a href="https://www.modernjsforphpdevs.com/react-symfony-4-starter-repo/">Modern JS for PHP Devs</a></p>
-        </footer>
+        <div id="root"></div>
+        <script type="text/javascript" src="{{ asset('build/app.js') }}"></script>
     </body>
 </html>

@@ -13,11 +13,11 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('Default/index.html.twig', []);
+        return $this->render('base.html.twig', []);
     }
 
     /**
-     * @Route("/data", name="data")
+     * @Route("/data", name="sampleData")
      */
     public function dataAction()
     {
