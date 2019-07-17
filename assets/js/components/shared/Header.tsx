@@ -6,12 +6,12 @@ import {
   DropdownToggle,
   Nav,
   Navbar,
-  NavbarBrand,
   NavbarToggler,
   NavItem,
-  NavLink,
   UncontrolledDropdown
 } from "reactstrap";
+import { Link, NavLink } from "react-router-dom";
+import { ABOUT, HOME } from "../../constants/route-paths";
 
 const Header: FunctionComponent = () => {
 
@@ -24,12 +24,28 @@ const Header: FunctionComponent = () => {
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">symfony app</NavbarBrand>
+        <Link className="navbar-brand" to={ HOME }>symfony app</Link>
         <NavbarToggler onClick={ toggleNavbar } />
         <Collapse isOpen={ isNavbarOpen } navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink href="/components/">Home</NavLink>
+              <NavLink
+                exact={ true }
+                className="nav-link"
+                to={ HOME }
+              >
+                Home
+              </NavLink>
+            </NavItem>
+
+            <NavItem>
+              <NavLink
+                exact={ true }
+                className="nav-link"
+                to={ ABOUT }
+              >
+                About
+              </NavLink>
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
