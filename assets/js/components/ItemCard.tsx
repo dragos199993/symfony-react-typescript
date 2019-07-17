@@ -13,7 +13,7 @@ class ItemCard extends Component {
   render() {
     return (
       <Container className="mt-5">
-
+        Home page
         <Button>A button</Button>
       </Container>
     );
