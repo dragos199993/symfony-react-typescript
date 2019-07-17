@@ -5,7 +5,7 @@ import axios from 'axios';
 class ItemCard extends Component {
 
   componentDidMount() {
-    axios.get('/data').then((res) => {
+    axios.get('/api/posts').then((res) => {
       console.log(res.data);
     });
   }
