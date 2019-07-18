@@ -2,10 +2,16 @@
 
 namespace App\Controller;
 
+use App\Entity\Post;
+use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
+
+/**
+ * @Route("/api/post", name="post.")
+ */
 class PostController extends AbstractController
 {
     /**
@@ -39,12 +45,36 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/api/post/{id}", name="post-detail")
+     * @Route("/", name="allPosts")
+     * @param PostRepository $postRepository
+     * @return JsonResponse
      */
-    public function postDetail(Request $request)
+    public function index(PostRepository $postRepository)
     {
-        dump($request);
+        return $this->json($postRepository->findAll());
+    }
 
-        return $this->json("hi");
+    /**
+     * @Route("/create", name="create")
+     */
+    public function createPost()
+    {
+        $post = new Post();
+
+        $post->setTitle("We set here a title");
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($post);
+        $em->flush();
+
+        return $this->json(["success" => true ]);
+    }
+
+    /**
+     * @Route("/{id}", name="get")
+     */
+    public function postDetail(Post $post)
+    {
+        return $this->json($post);
     }
 }

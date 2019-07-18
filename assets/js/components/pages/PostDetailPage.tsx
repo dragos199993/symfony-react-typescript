@@ -3,18 +3,19 @@ import { RouteComponentProps, withRouter } from "react-router";
 import axios from 'axios';
 
 const PostDetailPage: FunctionComponent<RouteComponentProps> = (props) => {
-  const [data, setData] = useState({ hits: [] });
-  const params: {[key: string]: string } = props.match.params;
+  const [data, setData] = useState<IPostDetail>({ id: '', title: '' });
+  const params: { [key: string]: string } = props.match.params;
 
   useEffect(() => {
     axios.get(`/api/post/${ params.postId }`).then((res) => {
-      console.log(res.data);
+      setData(res.data);
     });
   }, []);
 
+  const { id, title } = data;
   return (
-    <div>
-      post detail
+    <div className={ `post-${ id }` }>
+      <h1>{ title }</h1>
     </div>
   );
 };
