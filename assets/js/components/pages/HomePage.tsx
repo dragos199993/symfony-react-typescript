@@ -1,9 +1,30 @@
 import React, { FunctionComponent } from 'react';
-import ItemCard from "../ItemCard";
+import { Col, Container, Form, FormGroup, Input, Label } from "reactstrap";
+import { useInput } from "../hooks/useInput";
+import axios from '../../config/axios';
 
 const HomePage: FunctionComponent = () => {
+  const { value: title, bind, reset } = useInput('');
+
+  const handleSubmit = (evt: any) => {
+    evt.preventDefault();
+    axios.post('/post/create', { title }).then((res) => {
+      console.log(res.data);
+    });
+    reset();
+  };
+
   return (
-      <ItemCard />
+    <Container>
+      <Col>
+        <Form onSubmit={ handleSubmit }>
+          <FormGroup>
+            <Label for="title">Title</Label>
+            <Input className="title" type="text" { ...bind } />
+          </FormGroup>
+        </Form>
+      </Col>
+    </Container>
   );
 };
 

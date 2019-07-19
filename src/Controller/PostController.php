@@ -6,6 +6,7 @@ use App\Entity\Post;
 use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 
@@ -27,11 +28,12 @@ class PostController extends AbstractController
     /**
      * @Route("/create", name="create")
      */
-    public function createPost()
+    public function createPost(Request $request)
     {
-        $post = new Post();
+        $data = json_decode($request->getContent(), true);
 
-        $post->setTitle("post test");
+        $post = new Post();
+        $post->setTitle($data['title']);
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($post);
