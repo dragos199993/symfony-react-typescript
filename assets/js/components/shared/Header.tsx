@@ -11,7 +11,7 @@ import {
   UncontrolledDropdown
 } from "reactstrap";
 import { Link, NavLink } from "react-router-dom";
-import { ABOUT, HOME } from "../../constants/route-paths";
+import { ABOUT, HOME, POSTS } from "../../constants/route-paths";
 
 const Header: FunctionComponent = () => {
 
@@ -45,6 +45,16 @@ const Header: FunctionComponent = () => {
                 to={ ABOUT }
               >
                 About
+              </NavLink>
+            </NavItem>
+
+            <NavItem>
+              <NavLink
+                exact={ true }
+                className="nav-link"
+                to={ POSTS }
+              >
+                Posts
               </NavLink>
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
